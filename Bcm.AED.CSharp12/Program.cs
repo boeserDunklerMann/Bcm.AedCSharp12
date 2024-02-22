@@ -30,6 +30,11 @@ namespace Bcm.AED.CSharp12
             acct2.Withdrawal(11);
             Console.WriteLine(acct.ToString());
             Console.WriteLine(acct2.ToString());
+
+            CheckingAccount2 acct3 = new CheckingAccount2("2345678901", "Vito", 10);
+            acct3.Deposit(5);
+            acct3.Withdrawal(10);
+            Console.WriteLine(acct3.ToString());
         }
     }
 }
