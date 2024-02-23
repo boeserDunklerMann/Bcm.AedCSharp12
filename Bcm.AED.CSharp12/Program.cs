@@ -1,4 +1,5 @@
 ﻿using Bcm.AED.CSharp12.Banking;
+using Bcm.AED.CSharp12PatternMatching;
 
 namespace Bcm.AED.CSharp12
 {
@@ -43,6 +44,31 @@ namespace Bcm.AED.CSharp12
             Console.WriteLine(sparbuch.ToString());
 
             _ = new CollectionExpressions();
+
+            CanalLock canalLock = new CanalLock();
+            Console.WriteLine(canalLock);
+            canalLock.SetLowWaterGate(true);
+            Console.WriteLine(canalLock);
+            Console.WriteLine("boat 1 enters lower gate");
+            canalLock.SetLowWaterGate(false);
+            canalLock.SetWaterLevel(WaterLevel.High);   // bergfahrt
+            canalLock.SetHighWaterGate(true);
+            // boat 1 exits higher gate
+            // boat 2 enters higher gate
+            canalLock.SetHighWaterGate(false);
+            canalLock.SetWaterLevel(WaterLevel.Low);    // Talfahrt
+            canalLock.SetLowWaterGate(true);
+            // boat 2 exits lower gate
+            canalLock.SetLowWaterGate(false);   // Tür zu - fertig
+            Console.WriteLine(canalLock);
+
+            // this must fail - open higher gate when level is low
+            canalLock.SetHighWaterGate(true);
+            canalLock.SetWaterLevel(WaterLevel.High);
+
+            // this must fail - open both gates
+            canalLock.SetLowWaterGate(true);
+            canalLock.SetHighWaterGate(true);
         }
     }
 }
