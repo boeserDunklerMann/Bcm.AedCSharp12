@@ -36,22 +36,22 @@ namespace Bcm.AED.CSharp12PatternMatching
 			 */
 			HighWaterGateOpen = (open, HighWaterGateOpen, CanalLockWaterLevel) switch
 			{
-				(false, false, WaterLevel.High) => false,
-				(false, false, WaterLevel.Low) => false,
+				(false, _, _)=>false,	// closing the gate is always ok
+				//(false, false, WaterLevel.High) => false,
+				//(false, false, WaterLevel.Low) => false,
 				(true, false, WaterLevel.Low) => throw new InvalidOperationException("Cannot open higher gate when waterlevel is low."),
 				(true, false, WaterLevel.High) => true,
-				(false, true, WaterLevel.High)=>false,
-				(false, true, WaterLevel.Low)=>false,   // kann nicht passieren
+				//(false, true, WaterLevel.High)=>false,
+				//(false, true, WaterLevel.Low)=>false,   // kann nicht passieren
 				(true, true, WaterLevel.High) => true,
 				(true, true, WaterLevel.Low) => false, // should never happen
 				_ => throw new NotImplementedException()
 			};
 			HighWaterGateOpen = (open, LowWaterGateOpen) switch
 			{
+				(false, _) => false, // closing the gate is always ok
 				(true, true) => throw new InvalidOperationException("Cannot open both gates"),
-				(false, true) => false,
 				(true, false) => true,
-				(false, false) => false
 			};
 		}
 
