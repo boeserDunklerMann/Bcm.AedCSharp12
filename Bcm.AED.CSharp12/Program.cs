@@ -41,6 +41,8 @@ namespace Bcm.AED.CSharp12
             sparbuch.Withdrawal(50);
             sparbuch.ApplyInterest();
             Console.WriteLine(sparbuch.ToString());
+
+            _ = new CollectionExpressions();
         }
     }
 }
