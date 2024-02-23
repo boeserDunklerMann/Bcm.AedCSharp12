@@ -35,6 +35,12 @@ namespace Bcm.AED.CSharp12
             acct3.Deposit(5);
             acct3.Withdrawal(10);
             Console.WriteLine(acct3.ToString());
+
+            SavingsAccount sparbuch = new SavingsAccount("1234567890", "Vito", 1.25m);
+            sparbuch.Deposit(100);
+            sparbuch.Withdrawal(50);
+            sparbuch.ApplyInterest();
+            Console.WriteLine(sparbuch.ToString());
         }
     }
 }

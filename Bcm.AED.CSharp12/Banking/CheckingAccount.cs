@@ -1,5 +1,8 @@
 ﻿namespace Bcm.AED.CSharp12.Banking
 {
+	/// <summary>
+	/// primärer Konstruktor. akzeptiert alle Parameter der Basisklasse plus einen weiteren.
+	/// </summary>
 	public class CheckingAccount(string accountID, string owner, decimal overdraftLimit = 0) : BankAccount(accountID, owner)
 	{
 		public decimal CurrentBalance { get; private set; }= 0;
